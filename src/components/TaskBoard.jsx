@@ -49,6 +49,12 @@ const TaskBoard = () => {
   const handleDeleteAll = () => {
     setTasks([]);
   };
+  const handleFav = (taskId) => {
+    const taskIndex = tasks.findIndex((task) => task.id === taskId);
+    const newTasks = [...tasks];
+    newTasks[taskIndex].isFavorite = !newTasks[taskIndex].isFavorite;
+    setTasks(newTasks);
+  };
   return (
     <section className="mb-20" id="tasks">
       {showAddModal && (
@@ -71,6 +77,7 @@ const TaskBoard = () => {
             tasks={tasks}
             onEdit={handleEditTask}
             onDelete={handleDeleteTask}
+            onFav={handleFav}
           />
         </div>
       </div>
